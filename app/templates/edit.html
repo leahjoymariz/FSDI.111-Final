@@ -1,0 +1,36 @@
+{ % extends 'base.html' % }
+
+
+
+{% block title %}Edit Task{% endblock title %}
+
+
+
+{% block content %}
+<h1>Edit Task</h1>
+<form method="POST" action="{{ url_for('update_task', pk=task['id']) }}">
+    <p>
+        <label for="summary">Summary</label>
+        <input type="text" name="summary" id="id_summary" value="{{ task['summary'] }}">
+    </p>
+    <p>
+        <label for="description">Desciption</label>
+        <input type="text" name="description" id="id_description" value="{{ task['description'] }}">
+    </p>
+    <p>
+        <label for="is_done">Done?</label>
+        <input 
+            type="checkbox" 
+            name="is_done"
+            id="id_is_done" 
+            value="{{ task['is_done'] }}"
+            {% if task["is_done"] %}
+                checked
+            {% endif %}
+        >
+    </p>
+    <p>
+        <input type="submit" class="btn btn-success" value="Edit">
+    </p>
+</form>
+{% endblock content %}
